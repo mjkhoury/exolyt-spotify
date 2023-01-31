@@ -3,6 +3,8 @@ import AppTheme from '@Theme/AppTheme'
 import { Layout } from 'antd'
 import { motion } from 'framer-motion'
 
+import NavMenu from './NavMenu'
+
 const LOGO_WIDTH = 130
 export const ASIDE_WIDTH = 300
 
@@ -41,7 +43,7 @@ export default function LeftAside() {
         }}
       >
         <SpotifyTextSVG />
-        NavMenu
+        <NavMenu />
       </motion.div>
     </Layout.Sider>
   )

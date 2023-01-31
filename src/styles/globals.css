@@ -105,3 +105,14 @@ a {
     color-scheme: dark;
   }
 }
+
+/* antd menu */
+
+.ant-menu > .ant-menu-submenu > ul {
+  background: #000 !important;
+  color: #b3b3b3;
+  max-height: calc(100vh - 292px);
+  overflow: auto;
+  font-size: 14px;
+  text-transform: capitalize;
+}
