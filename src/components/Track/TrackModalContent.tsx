@@ -4,6 +4,8 @@ import { TrackType } from '@Types'
 import { Divider } from 'antd'
 import Image from 'next/image'
 
+import { trackData } from './Utils'
+
 const albumCoverImageStyle: React.CSSProperties = {
   borderRadius: AppTheme.borderRadius.large
 }
@@ -13,17 +15,19 @@ interface TrackModalContentProps {
 }
 
 export default function TrackModalContent({ track }: TrackModalContentProps) {
-  const { album, artists } = track
-  const albumName = album?.name ?? ''
+  const albumName = track?.album?.name ?? ''
   return (
     <Wrapper>
-      <RightSideDiv>
+      <LeftSideDiv>
         <Image
           width={450}
           height={450}
           style={albumCoverImageStyle}
           alt={`${albumName} Album cover`}
-          src={album?.images?.[0]?.url ?? '/../public/default_album_cover.jpeg'}
+          src={
+            track?.album?.images?.[0]?.url ??
+            '/../public/default_album_cover.jpeg'
+          }
         />
         <iframe
           src={`https://open.spotify.com/embed/track/${track.id}`}
@@ -32,46 +36,23 @@ export default function TrackModalContent({ track }: TrackModalContentProps) {
           frameBorder="0"
           allow="encrypted-media"
         />
-      </RightSideDiv>
-      <LeftSideDiv>
-        <p>
-          <span className="secondary">Name: </span>
-          {artists.map((artist) => artist.name).join(', ')}
-        </p>
-        <p>
-          <span className="secondary">Album: </span>
-          {album?.name}
-        </p>
-        <Divider style={{ background: 'white' }} />
-        <p>
-          <span className="secondary">Release Date: </span>
-          {album?.release_date}
-        </p>
-        <p>
-          <span className="secondary">Popularity: </span>
-          {track.popularity}
-        </p>
-        <p>
-          <span className="secondary">Duration: </span>
-          {track.duration_ms}
-        </p>
-        <p>
-          <span className="secondary">Explicit: </span>
-          {track.explicit ? 'Yes' : 'No'}
-        </p>
-        <p>
-          <span className="secondary">Track Number: </span>
-          {track.track_number}
-        </p>
-        <p>
-          <span className="secondary">Disc Number: </span>
-          {track.disc_number}
-        </p>
-        {/* <p>
-          <span className="secondary">Available Markets: </span>
-          {track.available_markets.join(', ')}
-        </p> */}
       </LeftSideDiv>
+      <RightSideDiv>
+        {trackData(track).map((data) => {
+          if (!data.value) return null
+          return (
+            <>
+              <Flex key={data.label}>
+                <Title>
+                  <span>{data.icon}</span> {data.label}
+                </Title>
+                <Info>{data.value}</Info>
+              </Flex>
+              {data.label === 'Album' && <StyledDivider />}
+            </>
+          )
+        })}
+      </RightSideDiv>
     </Wrapper>
   )
 }
@@ -93,7 +74,7 @@ const Wrapper = styled.div`
     }
   }
 `
-const LeftSideDiv = styled.div`
+const RightSideDiv = styled.div`
   display: flex;
   flex-direction: column;
   padding: ${({ theme }) => theme.paddings.base}px;
@@ -101,6 +82,35 @@ const LeftSideDiv = styled.div`
   gap: ${({ theme }) => theme.margins.half}px;
 `
 
-const RightSideDiv = styled.div`
+const LeftSideDiv = styled.div`
   flex: 1;
+`
+const Flex = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: ${({ theme }) => theme.margins.half}px;
+`
+
+const Title = styled.h3`
+  font-size: ${({ theme }) => theme.fontSizes.title};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  color: ${({ theme }) => theme.colors.shadowGrey};
+  > span {
+    margin-right: ${({ theme }) => theme.margins.half}px;
+    color: ${({ theme }) => theme.colors.secondary};
+  }
+`
+const Info = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes.title};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  color: ${({ theme }) => theme.colors.white};
+  > a {
+    text-decoration: underline;
+  }
+`
+const StyledDivider = styled(Divider)`
+  margin: ${({ theme }) => theme.margins.base}px 0;
+  border-color: ${({ theme }) => theme.colors.shadowGrey};
 `
