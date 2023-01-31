@@ -42,7 +42,7 @@ export default Track
 
 const StyledCard = styled(Card)`
   width: 164px;
-  padding: ${({ theme }) => theme.paddings.base}px;
+  padding: ${({ theme }) => theme.paddings.half}px;
   border-radius: ${({ theme }) => theme.borderRadius.medium}px;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.white};
