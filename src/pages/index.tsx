@@ -54,7 +54,7 @@ export async function getStaticProps() {
     props: {
       genresList: genresData?.genres ?? [],
       fallback: false,
-      error: genresData?.error
+      error: genresData?.error ?? null
     }
   }
 }

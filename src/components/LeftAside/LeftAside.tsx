@@ -11,7 +11,8 @@ export const ASIDE_WIDTH = 300
 const asideStyle: React.CSSProperties = {
   color: AppTheme.colors.white,
   padding: AppTheme.paddings.base,
-  backgroundColor: AppTheme.colors.black
+  backgroundColor: AppTheme.colors.black,
+  minHeight: '100vh'
 }
 
 const logoStyle: React.CSSProperties = {
@@ -28,15 +29,13 @@ export default function LeftAside() {
         animate="visible"
         variants={{
           hidden: {
-            scale: 0.2,
             opacity: 0
           },
           visible: {
             opacity: 1,
-            scale: 1,
             transition: {
               duration: 0.5,
-              delay: 1,
+              delay: 0.5,
               type: 'spring'
             }
           }
