@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Result } from 'antd'
 
 interface TitleProps {
   uppercase?: boolean
@@ -13,4 +14,11 @@ export const Title = styled.h1<TitleProps>`
   }
   text-transform: ${({ uppercase }) =>
     uppercase ? 'uppercase' : 'capitalize'};
+`
+
+export const Error = styled(Result)`
+  .ant-result-title,
+  .ant-result-subtitle {
+    color: ${({ theme }) => theme.colors.white};
+  }
 `
