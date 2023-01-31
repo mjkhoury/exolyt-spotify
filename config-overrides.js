@@ -14,7 +14,7 @@ export default function override(config) {
       '@Hooks': resolve(__dirname, 'src/hooks'),
       '@Assets': resolve(__dirname, 'src/assets'),
       '@Components': resolve(__dirname, 'src/components'),
-      '@API': resolve(__dirname, 'pages/api')
+      '@API': resolve(__dirname, 'src/pages/api')
     }
   }
 

@@ -11,7 +11,7 @@
       "@Hooks/*": ["./src/hooks/*"],
       "@Assets": ["./src/assets/*"],
       "@Components/*": ["./src/components/*"],
-      "@API/*": ["./pages/api/*"]
+      "@API/*": ["./src/pages/api/*"]
     }
   }
 }
