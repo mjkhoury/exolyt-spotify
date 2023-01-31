@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 import { Modal } from 'antd'
 import { useContext } from 'react'
 
+import TrackModalContent from './TrackModalContent'
+
 interface TrackModalProps {
   visible: boolean
   onCancel: () => void
@@ -18,8 +20,8 @@ const TrackModal = ({ visible, onCancel }: TrackModalProps) => {
       width={1000}
       destroyOnClose
     >
-      {selectedTrack.name}
-  </StyledModal>
+      <TrackModalContent track={selectedTrack} />
+    </StyledModal>
   )
 }
 
