@@ -16,16 +16,19 @@ const Track = ({ track }: TrackProps) => {
     setSelectedTrack(track)
   }
 
+  const albumName = track.album?.name ?? ''
+
   if (!track) return null
+
   return (
     <StyledCard
       hoverable
       onClick={() => onTrackClick(track)}
       cover={
         <Image
-          alt="example"
           width={135}
           height={150}
+          alt={`${albumName} Album cover`}
           src={
             track.album?.images?.[0]?.url ??
             '/../public/default_album_cover.jpeg'

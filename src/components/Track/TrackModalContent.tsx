@@ -14,14 +14,15 @@ interface TrackModalContentProps {
 
 export default function TrackModalContent({ track }: TrackModalContentProps) {
   const { album, artists } = track
+  const albumName = album?.name ?? ''
   return (
     <Wrapper>
       <RightSideDiv>
         <Image
-          style={albumCoverImageStyle}
-          alt="example"
           width={450}
           height={450}
+          style={albumCoverImageStyle}
+          alt={`${albumName} Album cover`}
           src={album?.images?.[0]?.url ?? '/../public/default_album_cover.jpeg'}
         />
         <iframe
