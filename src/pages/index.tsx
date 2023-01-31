@@ -1,9 +1,22 @@
 import { API_HEADERS, API_URL } from '@API/common'
 import App from '@Components/App'
+import { Spotify_data } from '@Context'
 import styles from '@Styles/Home.module.css'
+import { GenresType } from '@Types'
 import Head from 'next/head'
+import { useContext, useEffect } from 'react'
 
-export default function Home() {
+interface HomeProps {
+  genresList: GenresType
+  tracksList: unknown
+}
+
+export default function Home({ genresList }: HomeProps) {
+  const { setGenresList } = useContext(Spotify_data)
+  useEffect(() => {
+    setGenresList(genresList)
+  }, [genresList, setGenresList])
+
   return (
     <>
       <Head>
@@ -26,7 +39,8 @@ export async function getStaticProps() {
       headers: API_HEADERS
     }
   ).then((response) => response.json())
-
+  // TODO remove console.log
+  console.log(genresData)
   return {
     props: {
       genresList: genresData?.genres ?? [],
