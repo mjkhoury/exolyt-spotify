@@ -17,6 +17,7 @@ export const Title = styled.h1<TitleProps>`
 `
 
 export const Error = styled(Result)`
+  width: max-content;
   .ant-result-title,
   .ant-result-subtitle {
     color: ${({ theme }) => theme.colors.white};

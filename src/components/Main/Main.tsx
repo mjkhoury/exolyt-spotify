@@ -19,13 +19,11 @@ export default function Main() {
 
   if (errorMessage?.status) {
     return (
-      <Layout.Content style={mainStyle}>
-        <Error
-          status={errorMessage.status as ResultStatusType}
-          title={errorMessage.status}
-          subTitle={errorMessage.message}
-        />
-      </Layout.Content>
+      <Error
+        status={errorMessage.status as ResultStatusType}
+        title={errorMessage.status}
+        subTitle={errorMessage.message}
+      />
     )
   }
   return (
