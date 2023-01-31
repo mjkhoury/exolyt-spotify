@@ -1,4 +1,6 @@
+import Genre from '@Components/Genres/Genre'
 import { HEADER_HEIGHT } from '@Components/Header/Header'
+import Home from '@Components/Home/Home'
 import { Spotify_data } from '@Context'
 import AppTheme from '@Theme/AppTheme'
 import { Layout } from 'antd'
@@ -11,12 +13,12 @@ const mainStyle: React.CSSProperties = {
 
 export default function Main() {
   const { selectedTab } = useContext(Spotify_data)
-  const { tab } = selectedTab
+  const { tab, subTab: genre } = selectedTab
 
   return (
     <Layout.Content style={mainStyle}>
-      {tab === 'genres' && 'GENRES'}
-      {tab === 'home' && 'HOME'}
+      {tab === 'genres' && <Genre genre={genre} />}
+      {tab === 'home' && <Home />}
     </Layout.Content>
   )
 }
