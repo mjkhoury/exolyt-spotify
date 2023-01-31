@@ -4,7 +4,7 @@ import { Spotify_data } from '@Context'
 import styled from '@emotion/styled'
 import { useGenre } from '@Hooks/useGenre'
 import { TrackType } from '@Types'
-import { Spin } from 'antd'
+import { Divider, Spin } from 'antd'
 import { useContext, useEffect } from 'react'
 
 interface GenreProps {
@@ -42,6 +42,7 @@ const Genre = ({ genre }: GenreProps) => {
           if (!track?.name) return null
           return <Track key={track.id} track={track} />
         })}
+        <Divider />
       </TracksWrapper>
     </>
   )
