@@ -1,6 +1,9 @@
+import { Title } from '@Components/Reusable'
+import { Spotify_data } from '@Context'
 import COLORS from '@Static/colors'
 import AppTheme from '@Theme/AppTheme'
 import { Layout } from 'antd'
+import { useContext } from 'react'
 
 export const HEADER_HEIGHT = 78
 
@@ -17,5 +20,16 @@ const headerStyle: React.CSSProperties = {
 }
 
 export default function Header() {
-  return <Layout.Header style={headerStyle}>Header</Layout.Header>
+  const { selectedTab } = useContext(Spotify_data)
+  const { tab, subTab: genre } = selectedTab
+
+  if (tab !== 'genres') return null
+
+  return (
+    <Layout.Header style={headerStyle}>
+      <Title uppercase>
+        <span className="secondary">{genre}</span> Genre
+      </Title>
+    </Layout.Header>
+  )
 }
