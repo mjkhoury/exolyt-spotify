@@ -17,7 +17,7 @@ export const Title = styled.h1<TitleProps>`
 `
 
 export const Error = styled(Result)`
-  margin-top: ${({ theme }) => theme.margins.double}px;
+  margin-top: 78px;
   width: max-content;
   .ant-result-title,
   .ant-result-subtitle {
