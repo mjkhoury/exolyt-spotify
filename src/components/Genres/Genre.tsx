@@ -1,4 +1,3 @@
-import { Error } from '@Components/Reusable'
 import Track from '@Components/Track/Track'
 import TrackModal from '@Components/Track/TrackModal'
 import { Spotify_data } from '@Context'
@@ -6,7 +5,7 @@ import styled from '@emotion/styled'
 import { useGenre } from '@Hooks/useGenre'
 import { TrackType } from '@Types'
 import { Spin } from 'antd'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
 interface GenreProps {
   genre: string
@@ -14,20 +13,23 @@ interface GenreProps {
 
 const Genre = ({ genre }: GenreProps) => {
   const { genreTracks, isLoading, isError } = useGenre(genre)
-  const { selectedTrack, setSelectedTrack } = useContext(Spotify_data)
+  const { selectedTrack, setSelectedTrack, setErrorMessage } =
+    useContext(Spotify_data)
+
+  useEffect(() => {
+    if (isError) {
+      setErrorMessage({
+        status: 404,
+        message: 'Something went wrong. Please try again later.'
+      })
+    }
+  }, [isError, setErrorMessage])
 
   const onModalClose = () => {
     setSelectedTrack({} as TrackType)
   }
+
   if (isLoading) return <StyledSpin size="large" />
-  if (isError)
-    return (
-      <Error
-        status="404"
-        title="404"
-        subTitle="Sorry, the page you visited does not exist."
-      />
-    )
 
   return (
     <>

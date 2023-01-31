@@ -1,3 +1,5 @@
+import { ResultStatusType } from 'antd/es/result'
+
 export type GenreType = string
 
 export type GenresType = GenreType[]
@@ -55,4 +57,9 @@ export type ImageType = {
   height: number
   width: number
   url: string
+}
+
+export type ErrorType = {
+  status: ResultStatusType
+  message: string
 }
