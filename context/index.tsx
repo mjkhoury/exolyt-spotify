@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { GenresType, SelectedTabType } from '@Types'
+import { GenresType, SelectedTabType, TrackType } from '@Types'
 import { createContext, useState } from 'react'
 
 export const Spotify_data = createContext({
@@ -10,7 +10,9 @@ export const Spotify_data = createContext({
     tab: 'home',
     subTab: 'home'
   } as SelectedTabType,
-  setSelectedTab: (_selectedTab: SelectedTabType) => {}
+  setSelectedTab: (_selectedTab: SelectedTabType) => {},
+  selectedTrack: {} as TrackType,
+  setSelectedTrack: (_selectedTrack: TrackType) => {}
 })
 
 interface ContextProps {
@@ -23,6 +25,7 @@ function Context({ children }: ContextProps) {
     tab: 'home',
     subTab: 'home'
   })
+  const [selectedTrack, setSelectedTrack] = useState<TrackType>({} as TrackType)
 
   return (
     <Spotify_data.Provider
@@ -30,7 +33,9 @@ function Context({ children }: ContextProps) {
         genresList,
         setGenresList,
         selectedTab,
-        setSelectedTab
+        setSelectedTab,
+        selectedTrack,
+        setSelectedTrack
       }}
     >
       {children}
