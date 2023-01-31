@@ -8,7 +8,7 @@ import LeftAside from './LeftAside/LeftAside'
 
 const wrapperLayoutStyle: React.CSSProperties = {
   width: '100vw',
-  height: `calc(100vh - ${FOOTER_HEIGHT + AppTheme.paddings.double}px)`,
+  height: `calc(100vh - ${FOOTER_HEIGHT}px)`,
   backgroundColor: AppTheme.colors.primary
 }
 
