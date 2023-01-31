@@ -1,17 +1,26 @@
+import { Spotify_data } from '@Context'
 import styled from '@emotion/styled'
 import { TrackType } from '@Types'
 import { Card } from 'antd'
 import Image from 'next/image'
+import { useContext } from 'react'
 
 interface TrackProps {
   track: TrackType
 }
 
 const Track = ({ track }: TrackProps) => {
+  const { setSelectedTrack } = useContext(Spotify_data)
+
+  const onTrackClick = (track: TrackType) => {
+    setSelectedTrack(track)
+  }
+
   if (!track) return null
   return (
     <StyledCard
       hoverable
+      onClick={() => onTrackClick(track)}
       cover={
         <Image
           alt="example"
