@@ -1,9 +1,12 @@
 import { Error } from '@Components/Reusable'
 import Track from '@Components/Track/Track'
+import TrackModal from '@Components/Track/TrackModal'
+import { Spotify_data } from '@Context'
 import styled from '@emotion/styled'
 import { useGenre } from '@Hooks/useGenre'
 import { TrackType } from '@Types'
 import { Spin } from 'antd'
+import { useContext } from 'react'
 
 interface GenreProps {
   genre: string
@@ -11,7 +14,11 @@ interface GenreProps {
 
 const Genre = ({ genre }: GenreProps) => {
   const { genreTracks, isLoading, isError } = useGenre(genre)
+  const { selectedTrack, setSelectedTrack } = useContext(Spotify_data)
 
+  const onModalClose = () => {
+    setSelectedTrack({} as TrackType)
+  }
   if (isLoading) return <StyledSpin size="large" />
   if (isError)
     return (
@@ -24,6 +31,10 @@ const Genre = ({ genre }: GenreProps) => {
 
   return (
     <>
+      <TrackModal
+        visible={selectedTrack?.name ? true : false}
+        onCancel={onModalClose}
+      />
       <TracksWrapper>
         {genreTracks.map((track: TrackType) => {
           if (!track?.name) return null
