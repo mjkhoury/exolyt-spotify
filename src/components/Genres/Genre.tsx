@@ -1,4 +1,5 @@
 import { Error } from '@Components/Reusable'
+import Track from '@Components/Track/Track'
 import styled from '@emotion/styled'
 import { useGenre } from '@Hooks/useGenre'
 import { TrackType } from '@Types'
@@ -26,7 +27,7 @@ const Genre = ({ genre }: GenreProps) => {
       <TracksWrapper>
         {genreTracks.map((track: TrackType) => {
           if (!track?.name) return null
-          return <div key={track.id}>{track.name}</div>
+          return <Track key={track.id} track={track} />
         })}
       </TracksWrapper>
     </>
