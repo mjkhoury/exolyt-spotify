@@ -8,3 +8,8 @@ export type MenuItem = {
   key: React.Key
   keyPath?: React.Key[]
 }
+
+export type SelectedTabType = {
+  tab: TabOptions
+  subTab: string
+}
