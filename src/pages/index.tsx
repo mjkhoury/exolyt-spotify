@@ -1,3 +1,4 @@
+import { API_HEADERS, API_URL } from '@API/common'
 import App from '@Components/App'
 import styles from '@Styles/Home.module.css'
 import Head from 'next/head'
@@ -16,4 +17,20 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const genresData = await fetch(
+    `${API_URL}/recommendations/available-genre-seeds`,
+    {
+      headers: API_HEADERS
+    }
+  ).then((response) => response.json())
+
+  return {
+    props: {
+      genresList: genresData?.genres ?? [],
+      fallback: false
+    }
+  }
 }
