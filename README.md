@@ -1,15 +1,37 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Exolyt Spotify
+<img width="1101" alt="Screenshot 2023-02-01 at 13 24 28" src="https://user-images.githubusercontent.com/30744133/216030014-414d8ee8-85c4-4d59-90ab-c2c413a27e55.png">
+
 ## Getting Started
 
-First, run the development server:
+Adding Enviroment variables:
+Create a .env.local file in the root directory:
+
+
+```js
+NEXT_PUBLIC_SPOTIFY_OAUTH_TOKEN=${Token}
+NEXT_PUBLIC_API_URL=https://api.spotify.com/v1
+```
+
+Token can be generated using from https://developer.spotify.com/console/get-available-genre-seeds/
+
+Install npm packages:
+
+```bash
+npm install
+```
+
+Build to generate an optimized version of your application for production
+
+```bash
+npm run build
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
