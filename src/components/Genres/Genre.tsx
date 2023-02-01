@@ -4,7 +4,7 @@ import { Spotify_data } from '@Context'
 import styled from '@emotion/styled'
 import { useGenre } from '@Hooks/useGenre'
 import { TrackType } from '@Types'
-import { Divider, Spin } from 'antd'
+import { Spin } from 'antd'
 import { useContext, useEffect } from 'react'
 
 interface GenreProps {
@@ -32,7 +32,7 @@ const Genre = ({ genre }: GenreProps) => {
   if (isLoading) return <StyledSpin size="large" />
 
   return (
-    <>
+    <Wrapper>
       <TrackModal
         visible={selectedTrack?.name ? true : false}
         onCancel={onModalClose}
@@ -42,17 +42,18 @@ const Genre = ({ genre }: GenreProps) => {
           if (!track?.name) return null
           return <Track key={track.id} track={track} />
         })}
-        <Divider />
       </TracksWrapper>
-    </>
+    </Wrapper>
   )
 }
 
 export default Genre
 
+const Wrapper = styled.div`
+  padding-bottom: ${({ theme }) => theme.paddings.double}px;
+`
 const TracksWrapper = styled.div`
-  height: 80vh;
-  padding-top: ${({ theme }) => theme.paddings.double};
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 2rem;
