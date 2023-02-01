@@ -15,6 +15,7 @@ NEXT_PUBLIC_API_URL=https://api.spotify.com/v1
 ```
 
 Token can be generated using from https://developer.spotify.com/console/get-available-genre-seeds/
+## Exclude 'Bearer' when declaring the token.
 
 Install npm packages:
 
