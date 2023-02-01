@@ -42,8 +42,8 @@ export default function TrackModalContent({ track }: TrackModalContentProps) {
         {trackData(track).map((data) => {
           if (!data.value) return null
           return (
-            <React.Fragment key={data.label}>
-              <Flex key={data.label}>
+            <React.Fragment key={data.key}>
+              <Flex>
                 <Title>
                   <span>{data.icon}</span> {data.label}
                 </Title>
@@ -101,9 +101,12 @@ const Title = styled.h3`
   > span {
     margin-right: ${({ theme }) => theme.margins.half}px;
     color: ${({ theme }) => theme.colors.secondary};
+    > svg {
+      height: auto;
+    }
   }
 `
-const Info = styled.p`
+const Info = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.title};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.colors.white};
@@ -111,7 +114,8 @@ const Info = styled.p`
     text-decoration: underline;
   }
 `
+
 const StyledDivider = styled(Divider)`
+  background-color: ${({ theme }) => theme.colors.shadowGrey};
   margin: ${({ theme }) => theme.margins.base}px 0;
-  border-color: ${({ theme }) => theme.colors.shadowGrey};
 `

@@ -19,38 +19,45 @@ export const trackData = (track: TrackType) => [
   {
     label: 'Name',
     value: track.name,
-    icon: <FaMusic />
+    icon: <FaMusic />,
+    key: 'name'
   },
   {
     label: 'Album',
     value: track.album?.name,
-    icon: <FaRecordVinyl />
+    icon: <FaRecordVinyl />,
+    key: 'album'
   },
   {
     label: 'Release Date',
     value: track.album?.release_date,
-    icon: <FaCalendar />
+    icon: <FaCalendar />,
+    key: 'release_date'
   },
   {
     label: 'Popularity',
     value: track.popularity,
-    icon: <FaStar />
+    icon: <FaStar />,
+    key: 'popularity'
   },
   {
     label: 'Duration',
     value: track.duration_ms,
-    icon: <FaClock />
+    icon: <FaClock />,
+    key: 'duration_ms'
   },
   {
     label: 'Explicit',
     value: track.explicit,
-    icon: <FaExclamation />
+    icon: <FaExclamation />,
+    key: 'explicit'
   },
 
   {
     label: 'Artists',
     value: track.artists.map((artist) => artist.name).join(', '),
-    icon: <FaUser />
+    icon: <FaUser />,
+    key: 'artists'
   },
   {
     label: 'Link',
@@ -59,7 +66,8 @@ export const trackData = (track: TrackType) => [
         Spotify
       </a>
     ),
-    icon: <FaLink />
+    icon: <FaLink />,
+    key: 'link'
   },
   {
     value: track.available_markets.length ? (
@@ -77,12 +85,15 @@ export const trackData = (track: TrackType) => [
           </ToolTipInner>
         }
       >
-        <Badge count={track.available_markets.length}>
-          <Button>Available markets</Button>
-        </Badge>
+        <>
+          <Badge count={track.available_markets.length}>
+            <Button>Available markets</Button>
+          </Badge>
+        </>
       </Tooltip>
     ) : null,
-    icon: <FaGlobe />
+    icon: <FaGlobe />,
+    key: 'available_markets'
   }
 ]
 
