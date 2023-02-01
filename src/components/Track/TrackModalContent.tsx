@@ -3,6 +3,7 @@ import AppTheme from '@Theme/AppTheme'
 import { TrackType } from '@Types'
 import { Divider } from 'antd'
 import Image from 'next/image'
+import React from 'react'
 
 import { trackData } from './Utils'
 
@@ -41,7 +42,7 @@ export default function TrackModalContent({ track }: TrackModalContentProps) {
         {trackData(track).map((data) => {
           if (!data.value) return null
           return (
-            <>
+            <React.Fragment key={data.label}>
               <Flex key={data.label}>
                 <Title>
                   <span>{data.icon}</span> {data.label}
@@ -49,7 +50,7 @@ export default function TrackModalContent({ track }: TrackModalContentProps) {
                 <Info>{data.value}</Info>
               </Flex>
               {data.label === 'Album' && <StyledDivider />}
-            </>
+            </React.Fragment>
           )
         })}
       </RightSideDiv>

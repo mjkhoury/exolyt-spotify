@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import AppTheme from '@Theme/AppTheme'
 import { TrackType } from '@Types'
 import { Badge, Button, Tooltip } from 'antd'
 import ReactCountryFlag from 'react-country-flag'
@@ -63,20 +64,14 @@ export const trackData = (track: TrackType) => [
   {
     value: track.available_markets.length ? (
       <Tooltip
-        overlayStyle={{ maxWidth: '500px' }}
+        overlayStyle={toolTipOverlayStyle}
+        overlayInnerStyle={toolTipOverlayInnerStyle}
         placement="top"
         title={
           <ToolTipInner>
             {track.available_markets.length > 0
               ? track.available_markets.map((market) => (
-                  <ReactCountryFlag
-                    key={market}
-                    countryCode={market}
-                    style={{
-                      fontSize: '2em',
-                      lineHeight: '2em'
-                    }}
-                  />
+                  <CountryFlag key={market} market={market} />
                 ))
               : 'No markets available'}
           </ToolTipInner>
@@ -91,7 +86,30 @@ export const trackData = (track: TrackType) => [
   }
 ]
 
+const toolTipOverlayStyle = {
+  maxWidth: '500px'
+}
+
+const toolTipOverlayInnerStyle = {
+  backgroundColor: AppTheme.colors.backgroundGray
+}
+
 const ToolTipInner = styled.div`
   padding: ${({ theme }) => theme.paddings.half}px;
-  width: 500px;
+  width: 100%;
 `
+
+interface CountryFlagProps {
+  market: string
+}
+
+const CountryFlag = ({ market }: CountryFlagProps) => (
+  <ReactCountryFlag
+    key={market}
+    countryCode={market}
+    style={{
+      fontSize: '2em',
+      lineHeight: '2em'
+    }}
+  />
+)

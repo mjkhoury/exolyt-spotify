@@ -14,7 +14,7 @@ const TrackModal = ({ visible, onCancel }: TrackModalProps) => {
   const { selectedTrack } = useContext(Spotify_data)
   return (
     <StyledModal
-      visible={visible}
+      open={visible}
       onCancel={onCancel}
       footer={null}
       width={1000}

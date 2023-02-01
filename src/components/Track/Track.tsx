@@ -25,15 +25,17 @@ const Track = ({ track }: TrackProps) => {
       hoverable
       onClick={() => onTrackClick(track)}
       cover={
-        <Image
-          width={135}
-          height={150}
-          alt={`${albumName} Album cover`}
-          src={
-            track.album?.images?.[0]?.url ??
-            '/../public/default_album_cover.jpeg'
-          }
-        />
+        <ImageWrapper>
+          <Image
+            fill
+            sizes="(max-width: 768px) 100vw, 164px"
+            alt={`${albumName} Album cover`}
+            src={
+              track.album?.images?.[0]?.url ??
+              '/../public/default_album_cover.jpeg'
+            }
+          />
+        </ImageWrapper>
       }
     >
       <Card.Meta title={track.name} description={track.artists?.[0]?.name} />
@@ -71,4 +73,15 @@ const StyledCard = styled(Card)`
   .ant-card-cover img {
     border-radius: ${({ theme }) => theme.borderRadius.medium}px;
   }
+`
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 150px;
+  border-radius: ${({ theme }) => theme.borderRadius.medium}px;
+  overflow: hidden;
+  img {
+    border-radius: ${({ theme }) => theme.borderRadius.medium}px;
+  }
+}
 `
